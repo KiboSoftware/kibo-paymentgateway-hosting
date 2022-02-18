@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { AdapterFactory, AdapterContext } from "../types/index";
+import { Request, Response } from 'express'
+import type { AdapterFactory, AdapterContext } from '../types'
 
 export default async function (
   req: Request,
@@ -8,17 +8,17 @@ export default async function (
   factory: AdapterFactory,
   logger: any
 ) {
-  const childLogger = logger.child({ CorrelationId: "451", TenantId: 234 });
-  const context: AdapterContext = req.body.context;
-  const service: any = factory.createAdapter(context, logger);
+  const childLogger = logger.child({ CorrelationId: '451', TenantId: 234 })
+  const context: AdapterContext = req.body.context
+  const service: any = factory.createAdapter(context, logger)
 
   try {
-    const body: any = await service[action](req);
-    resp.send(body);
+    const body: any = await service[action](req)
+    resp.send(body)
   } catch (e: any) {
     // resp.statusCode = 501
-    resp.statusMessage = e.message ?? e.toString();
-    resp.sendStatus(501);
+    resp.statusMessage = e.message ?? e.toString()
+    resp.sendStatus(501)
     // ducktype check for error
     // check if error type
   }

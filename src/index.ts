@@ -1,2 +1,3 @@
-import host from "./host/index";
-export default host;
+import host from './host'
+export * from './types'
+export default host

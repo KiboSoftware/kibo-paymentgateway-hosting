@@ -1,37 +1,29 @@
-import controller from "./controller";
-import { AdapterFactory } from "../types/index";
+import controller from './controller'
+import type { AdapterFactory } from '../types'
 
-export default (
-  app: any,
-  gatewayFactory: AdapterFactory,
-  logger: any
-) => {
+type RouteAction = {
+  route: string
+  action: string
+}
+
+const controllerActions: Array<RouteAction> = [
+  { route: '/authorize', action: 'authorize' },
+  { route: '/authorizeWithToken', action: 'authorizeWithToken' },
+  { route: '/credit', action: 'credit' },
+  { route: '/void', action: 'void' },
+  { route: '/capture', action: 'capture' },
+  { route: '/authorizeAndCapture', action: 'authorizeAndCapture' },
+  { route: '/authorizeAndCaptureWithToken', action: 'authorizeAndCaptureWithToken' },
+  { route: '/createGiftCard', action: 'createGiftCard' },
+  { route: '/getBalance', action: 'getBalance' },
+]
+
+export default (app: any, gatewayFactory: AdapterFactory, logger: any) => {
   const defaultHandler = async (req: any, res: any, action: string) => {
-    return controller(req, res, action, gatewayFactory, logger);
-  };
-  app.use("/authorize", (req: any, res: any) =>
-    defaultHandler(req, res, "authorize")
-  );
-  app.use("/authorizeWithToken", (req: any, res: any) =>
-    defaultHandler(req, res, "authorizeWithToken")
-  );
-  app.use("/credit", (req: any, res: any) =>
-    defaultHandler(req, res, "credit")
-  );
-  app.use("/void", (req: any, res: any) => defaultHandler(req, res, "void"));
-  app.use("/capture", (req: any, res: any) =>
-    defaultHandler(req, res, "capture")
-  );
-  app.use("/authorizeAndCapture", (req: any, res: any) =>
-    defaultHandler(req, res, "authorizeAndCapture")
-  );
-  app.use("/authorizeAndCaptureWithToken", (req: any, res: any) =>
-    defaultHandler(req, res, "authorizeAndCaptureWithToken")
-  );
-  app.use("/createGiftCard", (req: any, res: any) =>
-    defaultHandler(req, res, "createGiftCard")
-  );
-  app.use("/getBalance", (req: any, res: any) =>
-    defaultHandler(req, res, "getBalance")
-  );
-};
+    return controller(req, res, action, gatewayFactory, logger)
+  }
+  for (const controllerAction of controllerActions) {
+    const { route, action } = controllerAction
+    app.use(route, (req: any, res: any) => defaultHandler(req, res, action))
+  }
+}
