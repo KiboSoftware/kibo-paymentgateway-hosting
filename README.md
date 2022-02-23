@@ -6,7 +6,7 @@ This is an example payment gateway adapter that can be used with the Kibo UCP.  
 
 ### Implement the PaymentGatwayAdapter interface
 ```
-import { PaymentGatwayAdapter,AdapterContext,GatewayAuthorizationRequest,GatewayAuthorizeResponse} from "@kibocommerce/kibo-paymentgateway-hosting/types/index";
+import type { PaymentGatwayAdapter, AdapterContext, GatewayAuthorizationRequest, GatewayAuthorizeResponse } from "@kibocommerce/kibo-paymentgateway-hosting";
 
 class MyService implements PaymentGatwayAdapter {
   context: AdapterContext;
@@ -28,7 +28,7 @@ class MyService implements PaymentGatwayAdapter {
 ```
 ### Creeate a factory
 ```
-import { AdapterFactory} from "@kibocommerce/kibo-paymentgateway-hosting/types/index";
+import type { AdapterFactory} from "@kibocommerce/kibo-paymentgateway-hosting";
 class MyFactory implements AdapterFactory {
   createAdapter(context: AdapterContext, logger: any): PaymentGatwayAdapter {
     return new MyService(context, logger);
