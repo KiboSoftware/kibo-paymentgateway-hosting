@@ -4,7 +4,7 @@ import type { AdapterFactory } from '../types'
 import route from './router'
 import createLogger from '../util/logger'
 
-export default (factory: AdapterFactory) => {
+export default (factory: AdapterFactory<any>) => {
   // register the app
   const app = express()
   // create logger
