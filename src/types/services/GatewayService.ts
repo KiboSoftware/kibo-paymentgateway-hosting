@@ -15,7 +15,8 @@ import type { GatewayGiftCardCreateRequest } from '../models/GatewayGiftCardCrea
 import type { GatewayGiftCardCreateResponse } from '../models/GatewayGiftCardCreateResponse'
 import type { GatewayVoidResponse } from '../models/GatewayVoidResponse'
 
-export interface AdapterFactory {
+export interface AdapterFactory<AdapterSettings> {
+  settings?: AdapterSettings
   createAdapter(context: AdapterContext, logger: any): PaymentGatwayAdapter
 }
 

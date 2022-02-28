@@ -20,7 +20,7 @@ const controllerActions: Array<RouteAction> = [
   { route: '/getBalance', action: 'getBalance' },
 ]
 
-export default (app: Application, gatewayFactory: AdapterFactory, logger: any) => {
+export default (app: Application, gatewayFactory: AdapterFactory<any>, logger: any) => {
   const defaultHandler = async (req: Request, res: Response, action: string) => {
     return controller(req, res, action, gatewayFactory, logger)
   }
