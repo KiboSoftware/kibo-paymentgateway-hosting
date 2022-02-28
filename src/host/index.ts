@@ -1,18 +1,14 @@
 import 'dotenv/config'
 import express from 'express'
-import winston from 'winston'
 import type { AdapterFactory } from '../types'
 import route from './router'
+import createLogger from '../util/logger'
 
 export default (factory: AdapterFactory) => {
-  const logger = winston.createLogger({
-    level: 'info',
-    format: winston.format.json(),
-    transports: [new winston.transports.Console()],
-  })
   // register the app
   const app = express()
-
+  // create logger
+  const logger = createLogger()
   // app runs on port 3000 by default. You can change this by editing this value
   const port = process.env.PORT || 3000
 
