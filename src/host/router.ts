@@ -1,5 +1,7 @@
 import controller from './controller'
 import type { AdapterFactory } from '../types'
+import type { Request, Response, Application } from 'express'
+import { getPackageInfo } from '../util/app-info'
 
 type RouteAction = {
   route: string
@@ -18,12 +20,16 @@ const controllerActions: Array<RouteAction> = [
   { route: '/getBalance', action: 'getBalance' },
 ]
 
-export default (app: any, gatewayFactory: AdapterFactory, logger: any) => {
-  const defaultHandler = async (req: any, res: any, action: string) => {
+export default (app: Application, gatewayFactory: AdapterFactory, logger: any) => {
+  const defaultHandler = async (req: Request, res: Response, action: string) => {
     return controller(req, res, action, gatewayFactory, logger)
   }
   for (const controllerAction of controllerActions) {
     const { route, action } = controllerAction
-    app.use(route, (req: any, res: any) => defaultHandler(req, res, action))
+    app.use(route, (req: Request, res: Response) => defaultHandler(req, res, action))
   }
+
+  app.use('/version', (req: Request, res: Response) => {
+    res.json(getPackageInfo())
+  })
 }
