@@ -3,8 +3,9 @@ import express from 'express'
 import type { AdapterFactory } from '../types'
 import route from './router'
 import createLogger from '../util/logger'
+import { Server } from 'http'
 
-export default (factory: AdapterFactory<any>) => {
+export default (factory: AdapterFactory<any>): Server => {
   // register the app
   const app = express()
   // create logger
@@ -18,7 +19,9 @@ export default (factory: AdapterFactory<any>) => {
   // registering routes for express
   route(app, factory, logger)
   // run the application
-  app.listen(port, () => logger.info(`Example payment gateway app listening on port ${port}!`))
+  const server = app.listen(port, () =>
+    logger.info(`Example payment gateway app listening on port ${port}!`)
+  )
 
-  return app
+  return server
 }
