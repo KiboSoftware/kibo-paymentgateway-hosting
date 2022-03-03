@@ -12,7 +12,7 @@ export default async function (
   const service: any = factory.createAdapter(context, logger)
 
   try {
-    const body: any = await service[action](req)
+    const body: any = await service[action](req.body)
     resp.send(body)
   } catch (e: any) {
     // resp.statusCode = 501
