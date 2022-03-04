@@ -2,6 +2,7 @@
 /* eslint-disable */
 /* eslint-disable */
 import type { AdapterContext } from '../models/AdapterContext'
+import type { AuthorizeIdKeyNameResponse } from '../models/AuthorizeIdKeyNameResponse'
 import type { CaptureRequest } from '../models/CaptureRequest'
 import type { CreditRequest } from '../models/CreditRequest'
 import type { GatewayAuthorizationRequest } from '../models/GatewayAuthorizationRequest'
@@ -14,6 +15,8 @@ import type { GatewayGetGiftCardBalanceResponse } from '../models/GatewayGetGift
 import type { GatewayGiftCardCreateRequest } from '../models/GatewayGiftCardCreateRequest'
 import type { GatewayGiftCardCreateResponse } from '../models/GatewayGiftCardCreateResponse'
 import type { GatewayVoidResponse } from '../models/GatewayVoidResponse'
+import type { GatewayInteraction } from '../models/GatewayInteraction'
+import type { ValidateResponse } from '../models/ValidateResponse'
 
 export interface AdapterFactory<AdapterSettings> {
   settings?: AdapterSettings
@@ -30,4 +33,6 @@ export interface PaymentGatwayAdapter {
   authorizeAndCaptureWithToken(request: GatewayAuthorizationRequest): Promise<GatewayDebitResponse>
   createGiftCard(request: GatewayGiftCardCreateResponse): Promise<GatewayGiftCardCreateRequest>
   getBalance(request: GatewayGetGiftCardBalanceRequest): Promise<GatewayGetGiftCardBalanceResponse>
+  validateAuthTransaction(request: GatewayInteraction): Promise<ValidateResponse>
+  getAuthorizationIDKeyName(): Promise<AuthorizeIdKeyNameResponse>
 }
