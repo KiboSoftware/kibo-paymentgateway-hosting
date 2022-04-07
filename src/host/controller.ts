@@ -15,7 +15,7 @@ export default async function (
     const body: any = await service[action](req.body)
     resp.send(body)
   } catch (e: any) {
-    // resp.statusCode = 501
+    logger.error(e)
     resp.statusMessage = e.message ?? e.toString()
     resp.sendStatus(501)
     // ducktype check for error

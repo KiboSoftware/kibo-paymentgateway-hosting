@@ -1,6 +1,7 @@
 import winston, { format } from 'winston'
 import type { LoggerOptions } from 'winston'
 import type { TransformFunction } from 'logform'
+import correlator from 'express-correlation-id'
 
 const potentiallyPrivatePattern = /4(?:\D*\d){13,16}/
 const shouldRedactLog = (message: string | Record<string, unknown>) => {
@@ -23,6 +24,11 @@ export default function (options?: LoggerOptions) {
   const pciMessageFormat = format(redactPciMessage)
   const transports = options?.transports ? options.transports : [new winston.transports.Console()]
   return winston.createLogger({
+    defaultMeta: {
+      get correlationId() {
+        return correlator.getId()
+      },
+    },
     level: 'info',
     format: format.combine(pciMessageFormat(), winston.format.json()),
     exceptionHandlers: [new winston.transports.Console()],
