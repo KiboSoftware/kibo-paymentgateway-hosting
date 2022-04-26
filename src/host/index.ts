@@ -16,7 +16,7 @@ export default (factory: AdapterFactory<any>): Server => {
   const port = process.env.PORT || 3000
 
   // json is required by the platform
-  app.use(express.json())
+  app.use(express.json({ limit: '16MB' }))
   // setup request correlation id middleware
   app.use(correlator({ header: 'x-vol-correlation-id' }))
   // setup access/request logger
