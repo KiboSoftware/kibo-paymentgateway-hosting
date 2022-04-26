@@ -18,6 +18,8 @@ const controllerActions: Array<RouteAction> = [
   { route: '/authorizeAndCaptureWithToken', action: 'authorizeAndCaptureWithToken' },
   { route: '/createGiftCard', action: 'createGiftCard' },
   { route: '/getBalance', action: 'getBalance' },
+  { route: '/validateAuthTransaction', action: 'validateAuthTransaction' },
+  { route: '/getAuthorizationIDKeyName', action: 'getAuthorizationIDKeyName' },
 ]
 
 export default (app: Application, gatewayFactory: AdapterFactory<any>, logger: any) => {
