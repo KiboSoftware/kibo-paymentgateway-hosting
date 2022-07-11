@@ -37,5 +37,5 @@ export interface PaymentGatwayAdapter {
   getBalance(request: GatewayGetGiftCardBalanceRequest): Promise<GatewayGetGiftCardBalanceResponse>
   validateAuthTransaction(request: GatewayInteraction): Promise<ValidateResponse>
   getAuthorizationIDKeyName(): Promise<AuthorizeIdKeyNameResponse>
-  service(request: SessionRequest): Promise<SessionResponse>
+  session(request: SessionRequest): Promise<SessionResponse>
 }
