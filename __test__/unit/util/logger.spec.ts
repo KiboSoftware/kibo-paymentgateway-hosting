@@ -22,6 +22,55 @@ describe('Kibo PaymentGateway Hosting - Logger', () => {
     expect(resultInfo).toEqual(expectMessage)
   })
 
+  it('should should redact a MasterCard card', () => {
+    const info = { level: 'info', message: 'Your card number is 5555555555554444' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
+  it('should should redact a American Express card', () => {
+    const info = { level: 'info', message: 'Your card number is 371449635398431' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
+  it('should should redact a American Express with dashes', () => {
+    const info = { level: 'info', message: 'Your card number is 3714-4963-5398-431' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
+  it('should should redact a Diners Club card', () => {
+    const info = { level: 'info', message: 'Your card number is 36227206271667' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
+  it('should should redact a Discover card', () => {
+    const info = { level: 'info', message: 'Your card number is 6011000990139424' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
+  it('should should redact a JCB card', () => {
+    const info = { level: 'info', message: 'Your card number is 3566002020360505' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
+  it('should should redact a JCB with dashes', () => {
+    const info = { level: 'info', message: 'Your card number is 3566-0020-2036-0505' }
+    const expectMessage = false
+    const resultInfo = redactPciMessage(info)
+    expect(resultInfo).toEqual(expectMessage)
+  })
+
   it('should set message to redacted for containing 16 digit number with hypens', () => {
     const info = { level: 'info', message: 'Your card number is 4111-1111-1111-1111' }
     const expectMessage = false
