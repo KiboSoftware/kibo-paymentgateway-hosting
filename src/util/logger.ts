@@ -3,7 +3,7 @@ import type { LoggerOptions } from 'winston'
 import type { TransformFunction } from 'logform'
 import correlator from 'express-correlation-id'
 
-const potentiallyPrivatePattern = /4(?:\D*\d){13,16}/
+const potentiallyPrivatePattern = /(\d{4}[ -]?){3}\d{2}\d?\d?/
 const shouldRedactLog = (message: string | Record<string, unknown>) => {
   const str = typeof message === 'object' ? JSON.stringify(message) : message
   return str.match(potentiallyPrivatePattern) ? true : false
