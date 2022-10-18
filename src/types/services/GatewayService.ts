@@ -17,6 +17,8 @@ import type { GatewayGiftCardCreateResponse } from '../models/GatewayGiftCardCre
 import type { GatewayVoidResponse } from '../models/GatewayVoidResponse'
 import type { GatewayInteraction } from '../models/GatewayInteraction'
 import type { ValidateResponse } from '../models/ValidateResponse'
+import { SessionRequest } from '../models/SessionRequest'
+import { SessionResponse } from '../models/SessionResponse'
 
 export interface AdapterFactory<AdapterSettings> {
   settings?: AdapterSettings
@@ -35,4 +37,5 @@ export interface PaymentGatwayAdapter {
   getBalance(request: GatewayGetGiftCardBalanceRequest): Promise<GatewayGetGiftCardBalanceResponse>
   validateAuthTransaction(request: GatewayInteraction): Promise<ValidateResponse>
   getAuthorizationIDKeyName(): Promise<AuthorizeIdKeyNameResponse>
+  session(request: SessionRequest): Promise<SessionResponse>
 }

@@ -20,6 +20,7 @@ const controllerActions: Array<RouteAction> = [
   { route: '/getBalance', action: 'getBalance' },
   { route: '/validateAuthTransaction', action: 'validateAuthTransaction' },
   { route: '/getAuthorizationIDKeyName', action: 'getAuthorizationIDKeyName' },
+  { route: '/session', action: 'session' },
 ]
 
 export default (app: Application, gatewayFactory: AdapterFactory<any>, logger: any) => {
