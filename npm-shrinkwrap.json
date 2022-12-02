@@ -1,12 +1,12 @@
 {
   "name": "@kibocommerce/kibo-paymentgateway-hosting",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "@kibocommerce/kibo-paymentgateway-hosting",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "license": "MIT",
       "dependencies": {
         "dotenv": "^8.2.0",
