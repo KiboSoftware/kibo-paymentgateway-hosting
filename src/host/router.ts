@@ -16,7 +16,7 @@ const controllerActions: Array<RouteAction> = [
   { route: '/capture', action: 'capture' },
   { route: '/authorizeAndCapture', action: 'authorizeAndCapture' },
   { route: '/authorizeAndCaptureWithToken', action: 'authorizeAndCaptureWithToken' },
-  { route: '/createGiftCard', action: 'createGiftCard' },
+  { route: '/giftcardcreate', action: 'createGiftCard' },
   { route: '/getBalance', action: 'getBalance' },
   { route: '/validateAuthTransaction', action: 'validateAuthTransaction' },
   { route: '/getAuthorizationIDKeyName', action: 'getAuthorizationIDKeyName' },
