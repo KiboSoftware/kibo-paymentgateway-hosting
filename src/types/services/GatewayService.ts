@@ -33,7 +33,7 @@ export interface PaymentGatwayAdapter {
   void(request: CaptureRequest): Promise<GatewayVoidResponse>
   authorizeAndCapture(request: GatewayAuthorizationRequest): Promise<GatewayDebitResponse>
   authorizeAndCaptureWithToken(request: GatewayAuthorizationRequest): Promise<GatewayDebitResponse>
-  createGiftCard(request: GatewayGiftCardCreateResponse): Promise<GatewayGiftCardCreateRequest>
+  createGiftCard(request: GatewayGiftCardCreateRequest): Promise<GatewayGiftCardCreateResponse>
   getBalance(request: GatewayGetGiftCardBalanceRequest): Promise<GatewayGetGiftCardBalanceResponse>
   validateAuthTransaction(request: GatewayInteraction): Promise<ValidateResponse>
   getAuthorizationIDKeyName(): Promise<AuthorizeIdKeyNameResponse>
